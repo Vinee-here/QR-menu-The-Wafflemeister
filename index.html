@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>The Wafflemeister — QR Dessert Menu</title>
+  <meta name="description" content="Explore handcrafted Belgian waffles, waffle pops, mini pancakes, pocket waffles, bubble waffles and ice-cream waffwiches at The Wafflemeister. Your Daily Dose of Dessert Therapy!">
+  <meta name="theme-color" content="#0E0B0A">
+  <link rel="icon" type="image/png" href="assets/Logo.png">
+
+  <!-- Google Fonts: Poppins (Headings) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. HEADER (Compact, Mobile-First)
+       ========================================================================= -->
+  <header class="site-header" role="banner">
+    <div class="app-container">
+      <div class="header-inner">
+        <div class="brand-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" role="button" tabindex="0" aria-label="The Wafflemeister Home">
+          <img src="assets/Logo.png" alt="The Wafflemeister Logo" class="brand-logo-img">
+          <div class="brand-header-text">
+            <span class="brand-header-title">The Wafflemeister</span>
+            <span class="brand-header-tagline">Dine-in Menu</span>
+          </div>
+        </div>
+
+        <div class="header-badges">
+          <div class="veg-indicator-pill" title="100% Pure Vegetarian Café" aria-label="100% Vegetarian">
+            <span class="veg-icon-dot"></span>
+            <span>100% Veg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================= -->
+  <main class="app-container" role="main">
+
+    <!-- =======================================================================
+         2. BRAND INTRO / HERO (Compact Editorial, Food-Focused)
+         ======================================================================= -->
+    <section class="brand-hero" aria-label="Brand Overview">
+      <div class="hero-editorial-card">
+        <div class="hero-top-row">
+          <span class="hero-tag">Table QR Menu</span>
+          <span class="hero-menu-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            Freshly Made to Order
+          </span>
+        </div>
+
+        <div class="hero-title-group">
+          <h1 class="hero-brand-name">The <span>Wafflemeister</span></h1>
+          <p class="hero-tagline">Your Daily Dose of Dessert Therapy!</p>
+        </div>
+
+        <div class="hero-meta-row">
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Baked Fresh Daily</span>
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            <span>Real Belgian Chocolate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. SEARCH SECTION
+         ======================================================================= -->
+    <section class="search-section" aria-label="Search Menu">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input 
+          type="search" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Search for your favourite..." 
+          autocomplete="off" 
+          aria-label="Search menu items"
+        >
+        <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Clear search input">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="searchMetaStatus" class="search-meta-status">
+        <span id="searchStatusText">Showing matching results</span>
+        <button type="button" id="searchResetLink" class="search-reset-link">Show full menu</button>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. STICKY HORIZONTAL CATEGORY NAVIGATION
+         ======================================================================= -->
+    <nav class="category-nav-wrapper" aria-label="Menu Categories">
+      <div class="category-nav-inner no-scrollbar" id="categoryNavInner" role="tablist">
+        <!-- Dynamically rendered category pills -->
+      </div>
+    </nav>
+
+    <!-- =======================================================================
+         5. MENU SECTIONS & PRODUCT GRIDS
+         ======================================================================= -->
+    <div id="menuSectionsContainer">
+      <!-- Dynamically populated menu sections from js/menu-data.js -->
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       6. ITEM DETAILS BOTTOM SHEET / MODAL
+       ========================================================================= -->
+  <div id="itemModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-grabber-bar" aria-hidden="true"></div>
+      <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Close details">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="modal-hero-visual" id="modalHeroVisual">
+        <!-- Rendered visual -->
+      </div>
+
+      <div class="modal-content-body">
+        <div class="modal-meta-row">
+          <span class="modal-category-name" id="modalCategoryName">Category</span>
+          <div class="veg-badge-box" id="modalVegBadge" title="100% Pure Vegetarian">
+            <span class="veg-dot"></span>
+          </div>
+        </div>
+
+        <h2 class="modal-item-title" id="modalItemTitle">Item Name</h2>
+        <p class="modal-item-desc" id="modalItemDesc">Item Description</p>
+
+        <div class="modal-price-card" id="modalPriceValues">
+          <!-- Price info populated via JS -->
+        </div>
+
+        <div class="modal-server-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>Prepared fresh to order. Please let your server know your sweetness and topping preferences when placing your order.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       7. FOOTER
+       ========================================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="app-container">
+      <div class="footer-content">
+        <div class="footer-logo-wrap">
+          <img src="assets/Logo.png" alt="The Wafflemeister" class="footer-logo-img">
+          <div>
+            <h2 class="footer-brand-title">The Wafflemeister</h2>
+            <p class="footer-tagline">Your Daily Dose of Dessert Therapy!</p>
+          </div>
+        </div>
+
+        <div class="footer-info-badge">
+          <span class="footer-pureveg-icon">
+            <span class="footer-pureveg-dot"></span>
+          </span>
+          <span>100% Pure Vegetarian Handcrafted Desserts</span>
+        </div>
+
+        <p class="footer-service-notice">
+          All waffles, mini pancakes, and treats are made fresh to order. To place your order or request custom toppings, please speak with your server.
+        </p>
+
+        <div class="footer-copyright">
+          © The Wafflemeister. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back-to-Top Button -->
+  <button id="backToTopBtn" class="floating-top-btn" type="button" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/menu-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

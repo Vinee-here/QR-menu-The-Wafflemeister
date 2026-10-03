@@ -1,0 +1,1281 @@
+/* ==========================================================================
+   THE WAFFLEMEISTER — Mobile-First QR Menu Stylesheet
+   Strict adherence to design.md tokens & specifications
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens & CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Color Tokens from design.md */
+  --bg-primary: #0E0B0A;
+  --bg-card: #342B24;
+  --gold: #B06D28;
+  --gold-light: #DAAA5C;
+  --cream: #CDC2AD;
+  --text-primary: #FEFEFE;
+  --text-muted: #968E83;
+  --red: #D72B32;
+
+  /* Elevated Surfaces & Component Variants */
+  --bg-header: rgba(14, 11, 10, 0.94);
+  --bg-card-subtle: #231C17;
+  --bg-card-hover: #3D332A;
+  --border-subtle: rgba(205, 194, 173, 0.12);
+  --border-gold: rgba(176, 109, 40, 0.35);
+  --border-gold-bright: rgba(218, 170, 92, 0.6);
+  --gold-shadow: rgba(218, 170, 92, 0.18);
+  --veg-color: #2E7D32;
+
+  /* Typography */
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout & Spacing */
+  --container-max-width: 1140px;
+  --header-height: 64px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 130px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Accessibility Focus Ring */
+:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 2px;
+}
+
+/* Hide scrollbar for category tabs while maintaining scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. App Container
+   -------------------------------------------------------------------------- */
+.app-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   4. Header Component (Compact, Mobile-First)
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg-header);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.brand-logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.brand-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-header-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.2px;
+}
+
+.brand-header-tagline {
+  font-size: 11px;
+  color: var(--gold-light);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.header-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.veg-indicator-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: rgba(46, 125, 50, 0.15);
+  border: 1px solid rgba(46, 125, 50, 0.35);
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  color: #76D275;
+}
+
+.veg-icon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  box-shadow: 0 0 6px #4CAF50;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero / Brand Intro (Editorial, Food-Focused, No Clutter)
+   -------------------------------------------------------------------------- */
+.brand-hero {
+  padding: 24px 0 16px 0;
+  position: relative;
+}
+
+.hero-editorial-card {
+  background: linear-gradient(135deg, #2A211B 0%, #1A1411 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Subtle waffle geometric watermark in background */
+.hero-editorial-card::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(176, 109, 40, 0.18) 0%, rgba(14, 11, 10, 0) 70%);
+  pointer-events: none;
+}
+
+.hero-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: rgba(218, 170, 92, 0.1);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(218, 170, 92, 0.25);
+}
+
+.hero-menu-pill {
+  font-size: 11px;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hero-menu-pill svg {
+  color: var(--gold-light);
+}
+
+.hero-title-group {
+  margin-top: 2px;
+}
+
+.hero-brand-name {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.hero-brand-name span {
+  color: var(--gold-light);
+}
+
+.hero-tagline {
+  font-size: 14px;
+  color: var(--cream);
+  margin-top: 4px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(205, 194, 173, 0.1);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-meta-item svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold-light);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. Search Bar
+   -------------------------------------------------------------------------- */
+.search-section {
+  padding: 6px 0 16px 0;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 0 16px;
+  height: 48px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--gold-light);
+  box-shadow: 0 0 0 3px var(--gold-shadow);
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--gold-light);
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.search-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-clear-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cream);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 8px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.search-clear-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.search-clear-btn.visible {
+  display: flex;
+}
+
+.search-clear-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.search-meta-status {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 6px 0 6px;
+  font-size: 12px;
+  color: var(--cream);
+}
+
+.search-meta-status.active {
+  display: flex;
+}
+
+.search-reset-link {
+  color: var(--gold-light);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   7. Sticky Category Navigation
+   -------------------------------------------------------------------------- */
+.category-nav-wrapper {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 90;
+  background-color: var(--bg-header);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 0;
+  margin: 0 -16px 20px -16px;
+}
+
+.category-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 16px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-pill {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px; /* Touch target >= 44px */
+  padding: 0 16px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.category-pill:hover {
+  border-color: var(--gold);
+  color: var(--text-primary);
+}
+
+.category-pill.active {
+  background-color: var(--gold);
+  border-color: var(--gold-light);
+  color: #0E0B0A;
+  font-weight: 700;
+  box-shadow: 0 3px 12px rgba(176, 109, 40, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   8. Menu Sections & Headings
+   -------------------------------------------------------------------------- */
+.menu-section {
+  padding-bottom: 36px;
+  scroll-margin-top: 130px;
+}
+
+.menu-section-header {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-count-badge {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold-light);
+  background-color: rgba(218, 170, 92, 0.12);
+  border: 1px solid rgba(218, 170, 92, 0.25);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.section-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.section-note-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--gold-light);
+  background-color: rgba(218, 170, 92, 0.1);
+  border: 1px dashed rgba(218, 170, 92, 0.35);
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Product Grid & Product Card
+   Mobile: EXACTLY ONE COLUMN (strict requirement)
+   -------------------------------------------------------------------------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: 1 column */
+  gap: 18px;
+}
+
+.product-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
+  position: relative;
+}
+
+.product-card:active {
+  transform: scale(0.985);
+}
+
+.product-card:hover {
+  border-color: var(--border-gold);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Card Food Image Container — Strict 4:3 Aspect Ratio */
+.product-image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  background-color: var(--bg-card-subtle);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Restrained, elegant food placeholder */
+.food-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle at center, #2C221B 0%, #171310 100%);
+  user-select: none;
+}
+
+/* Subtle waffle geometric grid pattern watermark */
+.waffle-emboss-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(218, 170, 92, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(218, 170, 92, 0.4) 1px, transparent 1px);
+}
+
+.placeholder-brand-icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: transform var(--transition-normal);
+}
+
+.product-card:hover .placeholder-brand-icon {
+  transform: scale(1.08);
+}
+
+.placeholder-label {
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.65;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Actual image support (ready for dynamic URLs) */
+.product-real-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-real-img.loaded {
+  opacity: 1;
+}
+
+/* Floating Card Badges */
+.card-top-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Vegetarian Indicator - Standard Green Square with Green Circle */
+.veg-badge-box {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #4CAF50;
+  background-color: rgba(14, 11, 10, 0.8);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.veg-badge-box .veg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+}
+
+/* Promotional & Highlight Badges */
+.promo-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.promo-badge.bestseller {
+  background-color: var(--gold-light);
+  color: #0E0B0A;
+}
+
+.promo-badge.popular {
+  background-color: rgba(218, 170, 92, 0.2);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-light);
+  backdrop-filter: blur(4px);
+}
+
+.promo-badge.must-try {
+  background-color: var(--red);
+  color: #FFFFFF;
+}
+
+.promo-badge.serves-2 {
+  background-color: rgba(14, 11, 10, 0.85);
+  color: var(--cream);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Card Body Content */
+.product-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-name-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.product-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.product-description {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+/* Card Bottom Footer: Price & Action */
+.product-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(205, 194, 173, 0.08);
+}
+
+/* Pricing Layouts */
+.price-container {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.single-price {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+/* Multi-Size Pricing (Small & Regular) */
+.multi-size-price-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.size-price-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.size-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--cream);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.size-val {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--gold-light);
+  font-size: 15px;
+}
+
+.size-divider {
+  color: var(--border-gold);
+  font-weight: 300;
+}
+
+.size-val.confirm {
+  font-size: 12px;
+  color: #E57373;
+  font-family: var(--font-body);
+  font-weight: 600;
+  background: rgba(215, 43, 50, 0.15);
+  border: 1px solid rgba(215, 43, 50, 0.3);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+}
+
+/* Action Button (+) */
+.card-action-btn {
+  width: 44px; /* Touch target >= 44px */
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--gold);
+  color: #0E0B0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(176, 109, 40, 0.3);
+}
+
+.card-action-btn:hover {
+  background-color: var(--gold-light);
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(218, 170, 92, 0.45);
+}
+
+.card-action-btn:active {
+  transform: scale(0.92);
+}
+
+.card-action-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
+}
+
+/* --------------------------------------------------------------------------
+   10. Empty Search State
+   -------------------------------------------------------------------------- */
+.no-results-state {
+  text-align: center;
+  padding: 48px 16px;
+  background-color: var(--bg-card);
+  border: 1px dashed var(--border-gold);
+  border-radius: var(--radius-lg);
+  margin: 20px 0;
+}
+
+.no-results-icon {
+  width: 52px;
+  height: 52px;
+  color: var(--gold-light);
+  margin: 0 auto 14px auto;
+  opacity: 0.8;
+}
+
+.no-results-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.no-results-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 280px;
+  margin: 0 auto 16px auto;
+}
+
+.clear-search-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  background-color: var(--gold);
+  color: #0E0B0A;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.clear-search-action-btn:hover {
+  background-color: var(--gold-light);
+}
+
+/* --------------------------------------------------------------------------
+   11. Item Detail Bottom Sheet / Modal
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  display: flex;
+  align-items: flex-end; /* Mobile: bottom sheet */
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-dialog {
+  background-color: #231C17;
+  border: 1px solid var(--border-gold);
+  border-bottom: none;
+  border-radius: 24px 24px 0 0;
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  position: relative;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-overlay.open .modal-dialog {
+  transform: translateY(0);
+}
+
+.modal-grabber-bar {
+  width: 44px;
+  height: 4px;
+  background-color: rgba(205, 194, 173, 0.3);
+  border-radius: var(--radius-full);
+  margin: 12px auto 6px auto;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-subtle);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--gold);
+  color: #0E0B0A;
+}
+
+.modal-hero-visual {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--bg-card-subtle);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content-body {
+  padding: 20px 20px 32px 20px;
+}
+
+.modal-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.modal-category-name {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.modal-item-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.modal-item-desc {
+  font-size: 14px;
+  color: var(--cream);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.modal-price-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-price-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.modal-price-values {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.modal-server-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: rgba(218, 170, 92, 0.08);
+  border: 1px solid rgba(218, 170, 92, 0.2);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--cream);
+  line-height: 1.45;
+}
+
+.modal-server-note svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold-light);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer Component
+   -------------------------------------------------------------------------- */
+.site-footer {
+  margin-top: auto;
+  background-color: #080605;
+  border-top: 1px solid var(--border-subtle);
+  padding: 36px 0 40px 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.footer-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.footer-logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+}
+
+.footer-brand-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.footer-info-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  color: var(--cream);
+}
+
+.footer-pureveg-icon {
+  width: 14px;
+  height: 14px;
+  border: 1.2px solid #4CAF50;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-pureveg-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+}
+
+.footer-service-notice {
+  font-size: 12px;
+  color: var(--text-muted);
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+.footer-copyright {
+  font-size: 11px;
+  color: rgba(150, 142, 131, 0.6);
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   13. Floating Quick-Jump / Back to Top Button
+   -------------------------------------------------------------------------- */
+.floating-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 80;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all var(--transition-fast);
+}
+
+.floating-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.floating-top-btn:hover {
+  background-color: var(--gold);
+  color: #0E0B0A;
+}
+
+/* --------------------------------------------------------------------------
+   14. Progressive Enhancement: Tablet & Desktop
+   -------------------------------------------------------------------------- */
+
+/* Small Tablets (768px+) */
+@media (min-width: 768px) {
+  :root {
+    --header-height: 72px;
+  }
+
+  html {
+    scroll-padding-top: 150px;
+  }
+
+  .site-header {
+    height: var(--header-height);
+  }
+
+  .brand-logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-header-title {
+    font-size: 20px;
+  }
+
+  .hero-editorial-card {
+    padding: 28px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero-title-group {
+    max-width: 60%;
+  }
+
+  .hero-brand-name {
+    font-size: 32px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 20px;
+  }
+
+  .category-pill {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+
+  .modal-overlay {
+    align-items: center; /* Center modal on desktop/tablet */
+    padding: 24px;
+  }
+
+  .modal-dialog {
+    border-radius: 20px;
+    border-bottom: 1px solid var(--border-gold);
+    max-height: 80vh;
+    transform: scale(0.95);
+  }
+
+  .modal-overlay.open .modal-dialog {
+    transform: scale(1);
+  }
+
+  .modal-grabber-bar {
+    display: none;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    gap: 24px;
+  }
+
+  .brand-hero {
+    padding: 32px 0 20px 0;
+  }
+
+  .hero-brand-name {
+    font-size: 36px;
+  }
+
+  .category-nav-inner {
+    justify-content: center; /* Center category pills on wide desktop screens */
+  }
+}
