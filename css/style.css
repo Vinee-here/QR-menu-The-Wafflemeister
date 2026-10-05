@@ -583,15 +583,17 @@ a {
 
 /* Restrained, elegant food placeholder */
 .food-placeholder {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   background: radial-gradient(circle at center, #2C221B 0%, #171310 100%);
   user-select: none;
+  z-index: 1;
 }
 
 /* Subtle waffle geometric grid pattern watermark */
@@ -627,17 +629,24 @@ a {
   font-weight: 500;
 }
 
-/* Actual image support (ready for dynamic URLs) */
+/* Actual image support (with graceful fade-in & fallback) */
 .product-real-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease, transform var(--transition-normal);
+  z-index: 2;
 }
 
 .product-real-img.loaded {
   opacity: 1;
+}
+
+.product-card:hover .product-real-img {
+  transform: scale(1.04);
 }
 
 /* Floating Card Badges */
@@ -650,7 +659,7 @@ a {
   justify-content: space-between;
   align-items: center;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* Vegetarian Indicator - Standard Green Square with Green Circle */
@@ -979,6 +988,21 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.modal-real-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.modal-real-img.loaded {
+  opacity: 1;
 }
 
 .modal-content-body {
