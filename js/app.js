@@ -146,6 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    // Check if image is already cached/complete
+    const imgEl = card.querySelector(".product-real-img");
+    if (imgEl && imgEl.complete) {
+      imgEl.classList.add("loaded");
+    }
+
     // Interactivity: open item detail modal
     card.addEventListener("click", () => openItemModal(item, category));
     card.addEventListener("keydown", (e) => {
@@ -445,11 +451,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Modal Visual / Placeholder
     if (item.image) {
       modalHeroVisual.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;">
+        <div class="food-placeholder">
+          <div class="waffle-emboss-pattern"></div>
+          <svg class="placeholder-brand-icon" style="width:56px;height:56px;" viewBox="0 0 48 48" fill="none">
+            <path d="M24 6C17.37 6 12 11.37 12 18C12 21.05 13.14 23.83 15 25.96V38C15 40.21 16.79 42 19 42H29C31.21 42 33 40.21 33 38V25.96C34.86 23.83 36 21.05 36 18C36 11.37 30.63 6 24 6Z" fill="#B06D28" fill-opacity="0.2" stroke="#DAAA5C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 28H29M17 34H31" stroke="#DAAA5C" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="placeholder-label" style="font-size:12px;">${category.name}</span>
+        </div>
+        <img src="${item.image}" alt="${item.name}" class="modal-real-img" loading="eager" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
       `;
     } else {
       modalHeroVisual.innerHTML = `
-        <div class="food-placeholder" style="aspect-ratio:16/9;width:100%;">
+        <div class="food-placeholder">
           <div class="waffle-emboss-pattern"></div>
           <svg class="placeholder-brand-icon" style="width:56px;height:56px;" viewBox="0 0 48 48" fill="none">
             <path d="M24 6C17.37 6 12 11.37 12 18C12 21.05 13.14 23.83 15 25.96V38C15 40.21 16.79 42 19 42H29C31.21 42 33 40.21 33 38V25.96C34.86 23.83 36 21.05 36 18C36 11.37 30.63 6 24 6Z" fill="#B06D28" fill-opacity="0.2" stroke="#DAAA5C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -458,6 +472,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="placeholder-label" style="font-size:12px;">${category.name}</span>
         </div>
       `;
+    }
+
+    const modalImgEl = modalHeroVisual.querySelector(".modal-real-img");
+    if (modalImgEl && modalImgEl.complete) {
+      modalImgEl.classList.add("loaded");
     }
 
     itemModal.classList.add("open");

@@ -3,6 +3,23 @@
  * Primary source of truth: menu.md & design.md
  */
 
+/**
+ * Dedicated Food Photography Assets Registry
+ * 
+ * IMPORTANT:
+ * - Real product photographs can replace these placeholders anytime by updating only this registry
+ *   or the respective `image` field in MENU_ITEMS without touching UI components.
+ * - Stock food photography resides in images/ (the assets/ directory is reserved exclusively for Logo.png).
+ */
+const FOOD_IMAGES = {
+  BELGIAN_CHOCOLATE: "images/belgian-chocolate-waffle.jpg",
+  RED_VELVET: "images/red-velvet-waffle.jpg",
+  WAFFLE_POP: "images/waffle-pop.jpg",
+  MINI_PANCAKES: "images/mini-pancakes.jpg",
+  BUBBLE_WAFFLE: "images/bubble-waffle.jpg",
+  ICE_CREAM_WAFFWICH: "images/ice-cream-waffwich.jpg"
+};
+
 const MENU_CATEGORIES = [
   {
     id: "authentic-belgian-waffles",
@@ -102,7 +119,7 @@ const MENU_ITEMS = [
     price: 149,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.RED_VELVET,
     is_veg: true,
     available: true,
     badge: null,
@@ -130,7 +147,7 @@ const MENU_ITEMS = [
     price: 149,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.BELGIAN_CHOCOLATE,
     is_veg: true,
     available: true,
     badge: "Popular",
@@ -228,7 +245,7 @@ const MENU_ITEMS = [
     price: 169,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.BELGIAN_CHOCOLATE,
     is_veg: true,
     available: true,
     badge: "Must Try",
@@ -316,7 +333,7 @@ const MENU_ITEMS = [
     price: null,
     small_price: 159,
     regular_price: 269,
-    image: null,
+    image: FOOD_IMAGES.WAFFLE_POP,
     is_veg: true,
     available: true,
     badge: null,
@@ -386,7 +403,7 @@ const MENU_ITEMS = [
     price: null,
     small_price: 169,
     regular_price: 279,
-    image: null,
+    image: FOOD_IMAGES.WAFFLE_POP,
     is_veg: true,
     available: true,
     badge: "Bestseller",
@@ -489,7 +506,7 @@ const MENU_ITEMS = [
     price: null,
     small_price: 159,
     regular_price: 199,
-    image: null,
+    image: FOOD_IMAGES.MINI_PANCAKES,
     is_veg: true,
     available: true,
     badge: "Popular",
@@ -573,7 +590,7 @@ const MENU_ITEMS = [
     price: null,
     small_price: 169,
     regular_price: 229,
-    image: null,
+    image: FOOD_IMAGES.MINI_PANCAKES,
     is_veg: true,
     available: true,
     badge: "Bestseller",
@@ -591,7 +608,7 @@ const MENU_ITEMS = [
     price: 79,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.BELGIAN_CHOCOLATE,
     is_veg: true,
     available: true,
     badge: "Bestseller",
@@ -637,7 +654,7 @@ const MENU_ITEMS = [
     price: 230,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.BUBBLE_WAFFLE,
     is_veg: true,
     available: true,
     badge: "Serves 2",
@@ -693,7 +710,7 @@ const MENU_ITEMS = [
     price: 290,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.BUBBLE_WAFFLE,
     is_veg: true,
     available: true,
     badge: "Bestseller",
@@ -711,7 +728,7 @@ const MENU_ITEMS = [
     price: 150,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.ICE_CREAM_WAFFWICH,
     is_veg: true,
     available: true,
     badge: null,
@@ -725,7 +742,7 @@ const MENU_ITEMS = [
     price: 150,
     small_price: null,
     regular_price: null,
-    image: null,
+    image: FOOD_IMAGES.ICE_CREAM_WAFFWICH,
     is_veg: true,
     available: true,
     badge: "Popular",
